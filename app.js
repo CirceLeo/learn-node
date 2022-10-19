@@ -8,12 +8,12 @@ const routes = require('./routes')
 
 const app = express()
 
-const adminRoutes = require('./routes/admin')
+const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
 
 app.use(parser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
-app.use('/admin', adminRoutes)
+app.use('/admin', adminData.routes)
 app.use(shipRoutes)
 
 app.use((req, res, next) => {

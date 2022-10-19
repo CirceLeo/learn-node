@@ -3,6 +3,8 @@ const path = require('path')
 const router = express.Router()
 const rootDir = require('../helpers/path')
 
+const adminData = require('./admin')
+
 
 router.get('/hi', (req, res, next) => {
     res.send('<h1>how am i here</h1>')
@@ -10,6 +12,7 @@ router.get('/hi', (req, res, next) => {
 
 
 router.get('/', (req, res, next) => {
+    console.log(adminData.products)
     res.sendFile(path.join(rootDir, 'views', 'base.html'))
 })
 
