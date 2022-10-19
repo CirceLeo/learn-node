@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 
-const rootDir = require('../util/path')
+const rootDir = require('../helpers/path')
 
 const router = express.Router()
 router.get('/new-fun', (req, res, next) => {

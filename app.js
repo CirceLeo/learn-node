@@ -1,8 +1,9 @@
 const http = require('http')  
 const express = require('express')
 const parser = require('body-parser')
-const path = require('path')
+// const {parse} = require('path')
 
+const path = require('path')
 const routes = require('./routes')
 
 const app = express()
@@ -11,6 +12,7 @@ const adminRoutes = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
 
 app.use(parser.urlencoded({extended:false}))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use('/admin', adminRoutes)
 app.use(shipRoutes)
 
