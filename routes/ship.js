@@ -12,8 +12,10 @@ router.get('/hi', (req, res, next) => {
 
 
 router.get('/', (req, res, next) => {
-    console.log(adminData.products)
-    res.sendFile(path.join(rootDir, 'views', 'base.html'))
+    const prods = adminData.products
+    res.render('shop', {prods: prods, docTitle: 'shop'})
+    // console.log(adminData.products)
+    // res.sendFile(path.join(rootDir, 'views', 'base.html'))
 })
 
 module.exports = router

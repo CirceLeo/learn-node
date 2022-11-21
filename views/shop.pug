@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        link(rel="stylesheet", href="/main.css")
+    body 
+        header.main-header
+            nav.main-header__nav
+                ul.main-header__item-list 
+                    li.main-header_item 
+                        a.active(href="/") shop
+                    li.main-header_item 
+                        a(href="/admin/new-fun") add a thing
+    main 
+        if prods.length > 0
+            .grid 
+                each product in prods
+                    article.card.product-item 
+                    header.card__header 
+                        h1.product__title #{product.title}
+                    .card_img
+                        img(src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635951059l/59093587.jpg", alt="a green book cover")
+                    .card_content 
+                        h2.product__price $100
+                        p.product-desc its about a lady sasquash who kills randos
+                    .card_actions  
+                        button.btn buy it babe
+        else 
+            h1 nothing here

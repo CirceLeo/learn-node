@@ -8,6 +8,10 @@ const routes = require('./routes')
 
 const app = express()
 
+app.engine('pug', require('pug').__express)
+app.set('view engine', 'pug')
+// app.set('views', 'views')
+
 const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
 
