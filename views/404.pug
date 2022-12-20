@@ -4,18 +4,16 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title#{pageTitle}
+        title #{pageTitle}
+        link(rel="stylesheet", href="/main.css")
     body 
-        header.main-header
+    header.main-header
         nav.main-header__nav
             ul.main-header__item-list 
                 li.main-header_item 
                     a(href="/") shop
                 li.main-header_item 
-                    a.active(href="/admin/new-fun") add a thing
-        main
-            form.prod-form(action="/admin/product", method="POST")
-            .form-control 
-                label(for="title") Product Title
-                input (type="text", name="prod_tit")#title
-                button.btn(type="submit") add that thang
+                    a(href="/admin/new-fun") add a thing
+    main
+        h1 babe there is nothing here
+        h2 404 soz
