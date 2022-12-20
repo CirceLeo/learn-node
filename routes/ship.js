@@ -13,7 +13,7 @@ router.get('/hi', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     const prods = adminData.products
-    res.render('shop', {prods: prods, docTitle: 'shop'})
+    res.render('shop', {prods: prods, pageTitle: 'shop', path: '/'})
     // console.log(adminData.products)
     // res.sendFile(path.join(rootDir, 'views', 'base.html'))
 })
