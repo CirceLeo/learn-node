@@ -1,6 +1,7 @@
 const http = require('http')  
 const express = require('express')
 const parser = require('body-parser')
+const expressHbs = require('express-handlebars')
 // const {parse} = require('path')
 
 const path = require('path')
@@ -8,9 +9,11 @@ const routes = require('./routes')
 
 const app = express()
 
-app.engine('pug', require('pug').__express)
-app.set('view engine', 'pug')
-// app.set('views', 'views')
+app.engine('handlebars', expressHbs())
+app.set('view engine', 'handlebars')
+// app.engine('pug', require('pug').__express)
+// app.set('view engine', 'pug')
+app.set('views', 'views')
 
 const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
