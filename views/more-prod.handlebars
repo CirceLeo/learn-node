@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{pageTitle}}</title>
     <link rel="stylesheet" href="/main.css">
-
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="/">base</a></li>
-                <li><a href="/admin/new-fun">add thing</a></li>
+                <li><a class='active' href="/admin/new-fun">add thing</a></li>
             </ul>
         </nav>
     </header>
     <main>
-    <h1>babe there is nothing here</h1>
-    <h2>404 soz guy</h2>
+        <form action="/admin/new-fun" method="POST">
+            <div class='form-control'>
+                <button type="sumbit">add a thing</button>
+                <input type="text" name="prod_tit">
+            </div>
+        </form>
     </main>
 </body>
 </html>

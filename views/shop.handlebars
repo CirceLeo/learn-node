@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">base</a></li>
+                <li><a href="/admin/new-fun">add thing</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {{#if hasProducts}}
+            <div class="grid">
+                {{#each prods}}
+                <article class="card product-item"> 
+                    <header class="prod-tit">
+                        <h1>{{this.title}}</h1>
+                    </header>
+                        <img src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635951059l/59093587.jpg", alt="a green book cover"/>
+                        <div class="card-content">
+                            <h2 class="prod_price"> $3 </h2>
+                            <p class="prod_des"> info </p>
+                            <button class="btn"> buy me </button>
+                        </div>
+                </article>
+                {{/each}}
+            </div>
+        {{else}}
+        <div><h2>there ain't nothing in the shop</h2></div>
+        {{/if}}
+    </main>
+</body>
+</html>
