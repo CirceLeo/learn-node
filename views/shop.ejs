@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <%=pageTitle %></title>
-    <link rel="stylesheet" href="/css/main.css">
+<%- include('shared/head.ejs') %>
     <link rel="stylesheet" href="/css/forms.css">
     <link rel="stylesheet" href="/css/product.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">base</a></li>
-                <li><a href="/admin/new-fun">add thing</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('shared/navbar.ejs') %>
+
     <main>
         <% if (prods.length > 0) { %>
             <div class="grid">
@@ -39,5 +26,4 @@
         <div><h2>there ain't nothing in the shop</h2></div>
         <% } %>
     </main>
-</body>
-</html>
+<%- include('shared/butt.ejs') %>
