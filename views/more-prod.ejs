@@ -1,0 +1,15 @@
+<%- include('shared/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+    <%- include('shared/navbar.ejs') %>
+
+    <main>
+        <form action="/admin/new-fun" method="POST">
+            <label for="title">Product Title</label> 
+            <input type="text" name="prod_tit">
+            <button class="btn" type="sumbit">add a thing</button>
+        </form>
+    </main>
+<%- include('shared/butt.ejs') %>

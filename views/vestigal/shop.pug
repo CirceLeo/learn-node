@@ -1,0 +1,22 @@
+extends layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/product.css")
+
+block content 
+    main 
+        if prods.length > 0
+            .grid 
+                each product in prods
+                    article.card.product-item 
+                    header.card__header 
+                        h1.product__title #{product.title}
+                    .card_img
+                        img(src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635951059l/59093587.jpg", alt="a green book cover")
+                    .card_content 
+                        h2.product__price $100
+                        p.product-desc its about a lady sasquash who kills randos
+                    .card_actions  
+                        button.btn buy it babe
+        else 
+            h1 nothing here

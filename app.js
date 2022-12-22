@@ -1,36 +1,39 @@
 const http = require('http')  
-const fs = require('fs') 
+const express = require('express')
+const parser = require('body-parser')
+const errorCon = require('./controllers/other')
+// const {parse} = require('path')
 
-// function requestListen(req, res){
+const path = require('path')
+const routes = require('./routes')
 
-// }
+const app = express()
 
-const serve = http.createServer((req, res) => {
-    const url = req.url
-    const method = req.method
-    if(url === '/'){
-        res.write('<html>')
-        res.write('<head><title>Hi</title></head>')
-        res.write('<body><form action="/message" method="POST"><input type="text"><button type="submit">submit</botton></form></body>')
-        res.write('</html>')
-        return res.end()
-    }
-    if(url === '/message' && method === 'POST'){
-        fs.writeFileSync('message.txt', 'HIPPO')
-        res.statusCode = 302
-        res.setHeader('Location', '/')
-        // res.write('<html>')
-        // res.write('<head><title>Hi</title></head>')
-        // res.write('<body><form action="/message" method="POST"><input type="text"><button>submit</botton></form></body>')
-        // res.write('</html>')
-        return res.end()
-    }
-    res.setHeader('Content-Type', 'text/html')
-    res.write('<html>')
-    res.write('<head><title>Hi</title></head>')
-    res.write('<body><h1>wow it me</h1></body>')
-    res.write('</html>')
-    // res.write('')
-})
+app.engine('ejs', require('ejs').__express)
 
-serve.listen(3000)
+app.set('view engine', 'ejs')
+
+// app.set('views', 'views')
+
+const adminData = require('./routes/admin')
+const shipRoutes = require('./routes/ship')
+
+app.use(parser.urlencoded({extended:false}))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use('/admin', adminData.routes)
+app.use(shipRoutes)
+
+app.use(errorCon.getLost)
+
+
+app.listen(3000)
+
+
+
+//learning vestiges: 
+// app.engine('handlebars', expressHbs())
+// app.set('view engine', 'handlebars')
+// app.engine('pug', require('pug').__express)
+// app.set('view engine', 'pug')
+// const expressHbs = require('express-handlebars')
+// res.status(404).sendFile(path.join(__dirname, 'views', '404pg.html'))

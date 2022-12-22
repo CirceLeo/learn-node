@@ -1,0 +1,14 @@
+extends layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
+
+
+block content 
+    main
+        form.prod-form(action="/admin/new-fun", method="POST")
+            label(for="title") Product Title
+            input(type="text", name="prod_tit")#title
+            button.btn(type="submit") add that thang
+

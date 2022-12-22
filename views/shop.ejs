@@ -1,0 +1,29 @@
+<%- include('shared/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+    <%- include('shared/navbar.ejs') %>
+
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for(let prod of prods) { %>
+                <article class="card product-item"> 
+                    <header class="prod-tit">
+                        <h1><%= prod.title%></h1>
+                    </header>
+                        <img src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635951059l/59093587.jpg", alt="a green book cover"/>
+                        <div class="card-content">
+                            <h2 class="prod_price"> $3 </h2>
+                            <p class="prod_des"> info </p>
+                            <button class="btn"> buy me </button>
+                        </div>
+                </article>
+                <% } %>
+            </div>
+        <% } else { %>
+        <div><h2>there ain't nothing in the shop</h2></div>
+        <% } %>
+    </main>
+<%- include('shared/butt.ejs') %>

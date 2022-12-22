@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+.card {
+    border: .5px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    padding: .5rem;
+    text-align: center;
+    margin: .5rem;
+    box-shadow: 0 2px 5px black;
+}
+
+.gird {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.product-form {
+    width: 30rem;
+    max-width: 80%;
+    margin: auto;
+}
+
+.product-item {
+    max-width: 95%;
+    width: 15rem;
+}
+
+.product__title {
+    font-size: 2rem;
+    text-align: center;
+}
