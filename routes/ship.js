@@ -4,6 +4,7 @@ const router = express.Router()
 const rootDir = require('../helpers/path')
 
 const adminData = require('./admin')
+const prodControl = require('../controllers/products')
 
 
 router.get('/hi', (req, res, next) => {
@@ -11,12 +12,6 @@ router.get('/hi', (req, res, next) => {
 })
 
 
-router.get('/', (req, res, next) => {
-    const prods = adminData.products
-    res.render('shop', {prods: prods, pageTitle: 'shop', path: '/', hasProducts: prods.length > 0})
-    // res.render('shop', {prods: prods, pageTitle: 'shop', path: '/'})
-    // console.log(adminData.products)
-    // res.sendFile(path.join(rootDir, 'views', 'base.html'))
-})
+router.get('/', prodControl.getShop)
 
 module.exports = router
