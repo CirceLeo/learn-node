@@ -5,6 +5,7 @@ const rootDir = require('../helpers/path')
 
 const adminData = require('./admin')
 const prodControl = require('../controllers/products')
+const shopControl = require('../controllers/shop')
 
 
 router.get('/hi', (req, res, next) => {
@@ -12,6 +13,9 @@ router.get('/hi', (req, res, next) => {
 })
 
 
-router.get('/', prodControl.getShop)
+router.get('/', shopControl.getShopBase)
+router.get('/go-kart', shopControl.getShopKart)
+
+router.get('/all-prods', prodControl.getShopProds)
 
 module.exports = router

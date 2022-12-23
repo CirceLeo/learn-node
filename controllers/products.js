@@ -10,10 +10,16 @@ exports.getAddProd = (req, res, next) => {
 exports.postAddProd = (req, res, next) => {
     const localProd = new Product(req.body.prod_tit)
     localProd.save()
-    res.redirect('/')
+    res.redirect('/cart')
 }
 
-exports.getShop = (req, res, next) => {
+exports.getAdminProds = (req, res, next) => {
+    res.render('admin/admin-prods', {
+        pageTitle: 'here are all the products for admins', 
+        path: '/admin/prods'})
+}
+
+exports.getShopProds = (req, res, next) => {
     Product.fetchAll((prods) => {
         res.render('shop/prod-list', {
             prods: prods, 
@@ -23,6 +29,7 @@ exports.getShop = (req, res, next) => {
         })
     })
 }
+
 
 
     //vestigal code
