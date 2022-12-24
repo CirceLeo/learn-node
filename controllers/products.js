@@ -10,25 +10,19 @@ exports.getAddProd = (req, res, next) => {
 exports.postAddProd = (req, res, next) => {
     const localProd = new Product(req.body.prod_tit)
     localProd.save()
-    res.redirect('/cart')
+    res.redirect('/shop/cart')
 }
 
 exports.getAdminProds = (req, res, next) => {
-    res.render('admin/admin-prods', {
-        pageTitle: 'here are all the products for admins', 
-        path: '/admin/prods'})
+    Product.fetchAll((prods) => {
+        res.render('admin/admin-prods', {
+            prods: prods, 
+            pageTitle: 'here are all the products for admins', 
+            path: '/admin/prods'})
+        })        
 }
 
-exports.getShopProds = (req, res, next) => {
-    Product.fetchAll((prods) => {
-        res.render('shop/prod-list', {
-            prods: prods, 
-            pageTitle: 'shop', 
-            path: '/', 
-            hasProducts: prods.length > 0
-        })
-    })
-}
+
 
 
 

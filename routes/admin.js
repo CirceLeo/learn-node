@@ -7,7 +7,6 @@ const rootDir = require('../helpers/path')
 
 const router = express.Router()
 
-
 // /admin/new-fun => GET
 router.get('/new-fun', prodControl.getAddProd)
 
@@ -15,8 +14,10 @@ router.get('/new-fun', prodControl.getAddProd)
 router.post('/new-fun', prodControl.postAddProd)
 
 // /admin/prods => GET
-router.get('/prods', prodControl.getAddProd)
+router.get('/prods', prodControl.getAdminProds)
+
+exports.routes = router
+
 
 // module.exports = router
 // exports.products = products
-exports.routes = router
