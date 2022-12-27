@@ -7,8 +7,10 @@ const shopControl = require('../controllers/shop')
 
 router.get('/', shopControl.getShopBase)
 router.get('/go-kart', shopControl.getShopKart)
+router.get('/orders', shopControl.getOrders)
 
 router.get('/all-prods', shopControl.getShopProds)
+
 router.get('/checkout', shopControl.getCheckout)
 
 module.exports = router

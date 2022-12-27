@@ -18,6 +18,12 @@ exports.getShopKart = (req, res, next) => {
         path: '/go-kart'})
 }
 
+exports.getOrders = (req, res, next) => {
+    res.render('shop/orders', {
+        pageTitle: 'alll them ords', 
+        path: '/orders'})
+}
+
 
 exports.getShopProds = (req, res, next) => {
     Product.fetchAll((prods) => {
