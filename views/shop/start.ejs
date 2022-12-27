@@ -18,8 +18,8 @@
                             <div class="card-content">
                                 <h2 class="prod_price"> $<%= prod.price%> </h2>
                                 <p class="prod_des"> <%= prod.desc%> </p>
-                                <button class="btn"> buy me </button>
                             </div>
+                            <%- include('../shared/add-to-cart', {prod: prod}) %>
                     </article>
                 <% } %>
             </div>

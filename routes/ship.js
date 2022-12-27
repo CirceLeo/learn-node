@@ -4,9 +4,11 @@ const router = express.Router()
 const rootDir = require('../helpers/path')
 
 const shopControl = require('../controllers/shop')
+const { route } = require('express/lib/application')
 
 router.get('/', shopControl.getShopBase)
 router.get('/go-kart', shopControl.getShopKart)
+router.post('/go-kart')
 router.get('/orders', shopControl.getOrders)
 
 router.get('/all-prods', shopControl.getShopProds)

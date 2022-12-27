@@ -1,4 +1,5 @@
 const exp = require('constants')
+const { redirect } = require('express/lib/response')
 const Product = require('../models/product')
 
 
@@ -16,6 +17,12 @@ exports.getShopKart = (req, res, next) => {
     res.render('shop/cart', {
         pageTitle: 'Girlie look at the stuff you got', 
         path: '/go-kart'})
+}
+
+exports.postShopKart = (req, res, next) => {
+    const prodId = req.body.prodId
+    Product.findById()
+    redirect('/go-kart')
 }
 
 exports.getOrders = (req, res, next) => {

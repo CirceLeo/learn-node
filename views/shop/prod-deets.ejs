@@ -13,9 +13,6 @@
         </div>
         <h2>$<%= prod.price %></h2>
         <p><%= prod.desc %></p>
-        <form action="/cart" method="post">
-            <button type="submit" class="btn"> buy me </button>
-            <input type="hidden" name="prodId" value="<%= prod.id %>"
-        </form>
+        <%- include('../shared/add-to-cart') %>
     </main>
 </body>
