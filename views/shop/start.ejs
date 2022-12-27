@@ -9,17 +9,18 @@
         <% if (prods.length > 0) { %>
             <div class="grid">
                 <% for(let prod of prods) { %>
-                <article class="card product-item"> 
-                    <header class="prod-tit">
-                        <h1><%= prod.title%></h1>
-                    </header>
-                        <img src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1635951059l/59093587.jpg", alt="a green book cover"/>
-                        <div class="card-content">
-                            <h2 class="prod_price"> $3 </h2>
-                            <p class="prod_des"> info </p>
-                            <button class="btn"> buy me </button>
-                        </div>
-                </article>
+                    <article class="card product-item"> 
+                        <header class="prod-tit">
+                            <h1><%= prod.title%></h1>
+                        </header>
+                            <img src = "<%= prod.imgUrl%>"", 
+                                alt="<%= prod.title%>"/>
+                            <div class="card-content">
+                                <h2 class="prod_price"> $<%= prod.price%> </h2>
+                                <p class="prod_des"> <%= prod.desc%> </p>
+                                <button class="btn"> buy me </button>
+                            </div>
+                    </article>
                 <% } %>
             </div>
         <% } else { %>

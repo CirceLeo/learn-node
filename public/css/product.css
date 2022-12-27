@@ -29,6 +29,10 @@
     width: 15rem;
 }
 
+.product-item img {
+    max-width: 100%;
+}
+
 .product__title {
     font-size: 2rem;
     text-align: center;

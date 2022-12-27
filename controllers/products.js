@@ -14,7 +14,7 @@ exports.postAddProd = (req, res, next) => {
     const desc = req.body.desc
     const localProd = new Product(title, imgUrl, desc, price)
     localProd.save()
-    res.redirect('/shop/cart')
+    res.redirect('/shop/go-kart')
 }
 
 exports.getAdminProds = (req, res, next) => {
