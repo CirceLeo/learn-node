@@ -19,7 +19,7 @@
                             <h2 class="prod_price"> $<%= prod.price%> </h2>
                             <p class="prod_des"> <%= prod.desc%> </p>
                             <div>
-                                <a href="/products/<%= prod.id %>" class="btn">details</a>
+                                <a href="/all-prods/<%= prod.id %>" class="btn">details</a>
                                 <form action="/add-to-cart" method="post">
                                     <button type="submit" class="btn"> buy me </button>
                                 </form>
