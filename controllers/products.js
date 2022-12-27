@@ -8,7 +8,11 @@ exports.getAddProd = (req, res, next) => {
 }
 
 exports.postAddProd = (req, res, next) => {
-    const localProd = new Product(req.body.prod_tit)
+    const title = req.body.prod_tit
+    const imgUrl = req.body.imgUrl
+    const price = req.body.price
+    const desc = req.body.desc
+    const localProd = new Product(title, imgUrl, desc, price)
     localProd.save()
     res.redirect('/shop/cart')
 }

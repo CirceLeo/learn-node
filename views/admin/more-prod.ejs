@@ -7,8 +7,22 @@
 
     <main>
         <form action="/admin/new-fun" method="POST">
-            <label for="title">Product Title</label> 
-            <input type="text" name="prod_tit">
+            <div class="form-control">
+                <label for="title">Product Title</label> 
+                <input type="text" name="prod_tit">
+            </div>
+            <div class="form-control">
+                <label for="imgUrl">Img URL</label> 
+                <input type="text" name="imgUrl" id="imgUrl">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label> 
+                <input type="number" name="price" id="price">
+            </div>
+            <div class="form-control">
+                <label for="desc">Description</label> 
+                <textarea type="desc" name="desc" id="desc" rows="6"></textarea>
+            </div>
             <button class="btn" type="sumbit">add a thing</button>
         </form>
     </main>

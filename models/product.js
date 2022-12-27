@@ -20,8 +20,11 @@ module.exports = path.dirname(process.mainModule.filename)
 const prods = []
 
 module.exports = class Product {
-    constructor(inputTitle){
+    constructor(inputTitle, imgUrl, desc, price){
         this.title = inputTitle
+        this.imgUrl = imgUrl
+        this.desc = desc
+        this.price = price
     }
 
     save(){
