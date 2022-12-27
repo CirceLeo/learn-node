@@ -35,6 +35,11 @@ exports.getShopProds = (req, res, next) => {
     })
 }
 
+exports.getProdDetail= (req, res, next) => {
+    const prodId = req.params.prodId
+    
+}
+
 exports.getCheckout = (req, res, next) => {
     res.render('shop.checkout', {
         path: '/checkout',

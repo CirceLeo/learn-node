@@ -10,6 +10,7 @@ router.get('/go-kart', shopControl.getShopKart)
 router.get('/orders', shopControl.getOrders)
 
 router.get('/all-prods', shopControl.getShopProds)
+router.get('/all-prods/:prodId', shopControl.getProdDetail)
 
 router.get('/checkout', shopControl.getCheckout)
 
