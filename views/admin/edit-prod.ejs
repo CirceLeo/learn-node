@@ -1,0 +1,29 @@
+<%- include('../shared/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+    <%- include('../shared/navbar.ejs') %>
+
+    <main>
+        <form action="/admin/<% if (editing) { %>edit-prod<% } else {%>new-fun<%}%>" method="POST">
+            <div class="form-control">
+                <label for="title">Product Title</label> 
+                <input type="text" name="prod_tit" value="<% if (editing) { %><%=prod.title%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="imgUrl">Img URL</label> 
+                <input type="text" name="imgUrl" id="imgUrl" value="<% if (editing) { %><%=prod.imgUrl%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label> 
+                <input type="number" name="price" id="price" step=".01" value="<% if (editing) { %><%=prod.price%><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="desc">Description</label> 
+                <textarea type="desc" name="desc" id="desc" rows="6"> <% if (editing) { %><%=prod.desc%><% } %></textarea>
+            </div>
+            <button class="btn" type="sumbit"><% if (editing) { %> change it! <% } else { %> add a thing <% } %></button>
+        </form>
+    </main>
+<%- include('../shared/butt.ejs') %>

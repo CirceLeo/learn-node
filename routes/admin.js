@@ -16,6 +16,11 @@ router.post('/new-fun', prodControl.postAddProd)
 // /admin/prods => GET
 router.get('/prods', prodControl.getAdminProds)
 
+// /admin/prods/:prodId
+router.get('/edit-prod/:prodId', prodControl.getEditProd)
+// router.post('/edit-prod/:prodId', prodControl.getEditProd)
+
+
 exports.routes = router
 
 

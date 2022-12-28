@@ -1,9 +1,11 @@
 const Product = require('../models/product')
 
 exports.getAddProd = (req, res, next) => {
-    res.render('admin/more-prod', {
+    res.render('admin/edit-prod', {
         pageTitle: 'Pls add more products', 
-        path: '/admin/new-fun'})
+        path: '/admin/new-fun',
+        editing: false
+    })
 }
 
 exports.postAddProd = (req, res, next) => {
@@ -15,6 +17,26 @@ exports.postAddProd = (req, res, next) => {
     localProd.save()
     res.redirect('/admin/prods')
 }
+
+exports.getEditProd = (req, res, next) => {
+    const editMode = req.query.edit
+
+    if (!editMode){res.redirect('/admin/prods')}
+
+    const prodId = req.params.prodId
+    Product.findById(prodId, product => {
+        if(!product){
+            return res.redirect('/admin/all-prods')
+        }
+        res.render('admin/edit-prod', {
+            pageTitle: 'we gonna change this one', 
+            path: '/admin/edit-prod',
+            editing: editMode, //== 'true',
+            prod: product
+        })
+    })
+}
+
 
 exports.getAdminProds = (req, res, next) => {
     Product.fetchAll((prods) => {
