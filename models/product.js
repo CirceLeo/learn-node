@@ -30,7 +30,7 @@ module.exports = class Product {
 
     save(){
         getProdFromFile(products => {
-            if(this.id){
+            if(this.id !== null){
                 const oldProdInd =  products.findIndex(prod => prod.id === this.id)
                 const updatedProds = [...products]
                 updatedProds[oldProdInd] = this
@@ -39,11 +39,20 @@ module.exports = class Product {
                 })
             } else {
                 this.id = Math.random().toString()
-                prods.push(this)
-                fs.writeFile(p, JSON.stringify(prods), (err) =>{
+                products.push(this)
+                fs.writeFile(p, JSON.stringify(products), (err) =>{
                     console.log(err)
                 })
             }
+        })
+    }
+
+    static deleteById(id){
+        getProdFromFile(prods => {
+            const updatedProds = prods.filter(prod => prod.id !== id)
+            fs.writeFile(p, JSON.stringify(updatedProds), err => {
+                if(!err){}
+            })
         })
     }
 

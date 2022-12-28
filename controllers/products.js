@@ -60,7 +60,9 @@ exports.getAdminProds = (req, res, next) => {
         })        
 }
 
-
+exports.postDelete = (req, res, next) => {
+    const prodId = req.body.prodId
+}
 
 
 

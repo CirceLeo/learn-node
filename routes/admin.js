@@ -20,6 +20,9 @@ router.get('/prods', prodControl.getAdminProds)
 router.get('/edit-prod/:prodId', prodControl.getEditProd)
 router.post('/edit-prod', prodControl.postEditProd)
 
+// /admin/delete-prod => POST
+router.post('admin/delete-prod', prodControl.postDelete)
+
 
 exports.routes = router
 
