@@ -1,6 +1,7 @@
 const exp = require('constants')
 const { redirect } = require('express/lib/response')
 const Product = require('../models/product')
+const Cart = require('../models/cart')
 
 
 exports.getShopBase = (req, res, next) => {
@@ -21,7 +22,9 @@ exports.getShopKart = (req, res, next) => {
 
 exports.postShopKart = (req, res, next) => {
     const prodId = req.body.prodId
-    Product.findById()
+    Product.findById(prodId, (prod) => {
+        Cart.addProduct(prodId, prod.price)
+    })
     res.redirect('/')
 }
 

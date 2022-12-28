@@ -7,8 +7,10 @@ const shopControl = require('../controllers/shop')
 const { route } = require('express/lib/application')
 
 router.get('/', shopControl.getShopBase)
+
 router.get('/go-kart', shopControl.getShopKart)
-router.post('/go-kart')
+router.post('/go-kart', shopControl.postShopKart)
+
 router.get('/orders', shopControl.getOrders)
 
 router.get('/all-prods', shopControl.getShopProds)
