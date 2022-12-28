@@ -22,7 +22,7 @@ exports.getShopKart = (req, res, next) => {
 exports.postShopKart = (req, res, next) => {
     const prodId = req.body.prodId
     Product.findById()
-    redirect('/go-kart')
+    res.redirect('/')
 }
 
 exports.getOrders = (req, res, next) => {

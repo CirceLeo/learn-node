@@ -19,6 +19,7 @@
                                 <h2 class="prod_price"> $<%= prod.price%> </h2>
                                 <p class="prod_des"> <%= prod.desc%> </p>
                             </div>
+                            <a href="/all-prods/<%= prod.id %>" class="btn">details</a>
                             <%- include('../shared/add-to-cart', {prod: prod}) %>
                     </article>
                 <% } %>

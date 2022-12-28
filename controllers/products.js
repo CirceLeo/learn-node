@@ -4,7 +4,6 @@ exports.getAddProd = (req, res, next) => {
     res.render('admin/more-prod', {
         pageTitle: 'Pls add more products', 
         path: '/admin/new-fun'})
-    // res.sendFile(path.join(rootDir, 'views', 'moar.html'))
 }
 
 exports.postAddProd = (req, res, next) => {
@@ -14,7 +13,7 @@ exports.postAddProd = (req, res, next) => {
     const desc = req.body.desc
     const localProd = new Product(title, imgUrl, desc, price)
     localProd.save()
-    res.redirect('/shop/go-kart')
+    res.redirect('/admin/prods')
 }
 
 exports.getAdminProds = (req, res, next) => {
@@ -33,3 +32,4 @@ exports.getAdminProds = (req, res, next) => {
     //vestigal code
     // res.render('shop', {prods: prods, pageTitle: 'shop', path: '/'})
     // res.sendFile(path.join(rootDir, 'views', 'base.html'))
+        // res.sendFile(path.join(rootDir, 'views', 'moar.html'))
