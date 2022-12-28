@@ -23,6 +23,9 @@
                 <label for="desc">Description</label> 
                 <textarea type="desc" name="desc" id="desc" rows="6"> <% if (editing) { %><%=prod.desc%><% } %></textarea>
             </div>
+            <% if (editing) { %>
+                <input type="hidden" name="prodId" value="<%prod.id%>">
+            <% } %>
             <button class="btn" type="sumbit"><% if (editing) { %> change it! <% } else { %> add a thing <% } %></button>
         </form>
     </main>

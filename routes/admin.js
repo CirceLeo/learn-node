@@ -18,7 +18,7 @@ router.get('/prods', prodControl.getAdminProds)
 
 // /admin/prods/:prodId
 router.get('/edit-prod/:prodId', prodControl.getEditProd)
-// router.post('/edit-prod/:prodId', prodControl.getEditProd)
+router.post('/edit-prod', prodControl.postEditProd)
 
 
 exports.routes = router

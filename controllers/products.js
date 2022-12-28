@@ -13,7 +13,7 @@ exports.postAddProd = (req, res, next) => {
     const imgUrl = req.body.imgUrl
     const price = req.body.price
     const desc = req.body.desc
-    const localProd = new Product(title, imgUrl, desc, price)
+    const localProd = new Product(null, title, imgUrl, desc, price)
     localProd.save()
     res.redirect('/admin/prods')
 }
@@ -35,6 +35,19 @@ exports.getEditProd = (req, res, next) => {
             prod: product
         })
     })
+}
+
+
+exports.postEditProd = (req, res, next) => {
+    const prodId = req.body.prodId
+    const newTit = req.body.prod_tit
+    const newUrl = req.body.imgUrl
+    const newPrice = req.body.price
+    const newDesc = req.body.desc
+
+    const revampProd = new Product(prodId, newTit, newUrl, newDesc, newPrice)
+    revampProd.save()
+    res.redirect('/admin/prods')
 }
 
 

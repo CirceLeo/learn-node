@@ -20,7 +20,8 @@ module.exports = path.dirname(process.mainModule.filename)
 const prods = []
 
 module.exports = class Product {
-    constructor(inputTitle, imgUrl, desc, price){
+    constructor(id, inputTitle, imgUrl, desc, price){
+        this.id = id
         this.title = inputTitle
         this.imgUrl = imgUrl
         this.desc = desc
@@ -28,12 +29,21 @@ module.exports = class Product {
     }
 
     save(){
-        this.id = Math.random().toString()
-        getProdFromFile(prods => {
-            prods.push(this)
-            fs.writeFile(p, JSON.stringify(prods), (err) =>{
-                console.log(err)
-            })
+        getProdFromFile(products => {
+            if(this.id){
+                const oldProdInd =  products.findIndex(prod => prod.id === this.id)
+                const updatedProds = [...products]
+                updatedProds[oldProdInd] = this
+                fs.writeFile(p, JSON.stringify(updatedProds), (err) =>{
+                    console.log(err)
+                })
+            } else {
+                this.id = Math.random().toString()
+                prods.push(this)
+                fs.writeFile(p, JSON.stringify(prods), (err) =>{
+                    console.log(err)
+                })
+            }
         })
     }
 
