@@ -15,9 +15,22 @@ exports.getShopBase = (req, res, next) => {
 }
 
 exports.getShopKart = (req, res, next) => {
-    res.render('shop/cart', {
-        pageTitle: 'Girlie look at the stuff you got', 
-        path: '/go-kart'})
+    Cart.getCart(cart => {
+        Product.fetchAll(products => {
+            const cartProds = []
+            for(product of products){
+                const cartProdData = cart.products.find(prod => prod.id === product.id)
+                if(cartProdData){
+                    cartProds.push({productData: product, qty: cartProdData.qty})
+                }
+            }
+            res.render('shop/cart', {
+                pageTitle: 'Girlie look at the stuff you got', 
+                path: '/go-kart',
+                products: cartProds
+            })
+        })
+    })
 }
 
 exports.postShopKart = (req, res, next) => {
@@ -25,7 +38,15 @@ exports.postShopKart = (req, res, next) => {
     Product.findById(prodId, (prod) => {
         Cart.addProduct(prodId, prod.price)
     })
-    res.redirect('/')
+    res.redirect('/go-kart')
+}
+
+exports.postCartDeleteItem = (req, res, next) => {
+    const prodId = req.body.prodId
+    Product.findById(prodId, product => {
+        Cart.deleteProd(prodId, product.price)
+        res.redirect('/go-kart')
+    })
 }
 
 exports.getOrders = (req, res, next) => {

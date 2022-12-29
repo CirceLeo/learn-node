@@ -7,5 +7,20 @@
     
     <main>
         <h1>CART</h1>
+        <% if(products.length > 0) { %>
+            <ul>
+                <% products.forEach(prod => { %>
+                        <li>
+                            <p> <%=prod.productData.title %> (<%=prod.qty %>) </p> 
+                            <form action="/cart-delete-item" method="POST">
+                                <input type="hidden" value="<%=prod.productData.id%>" name="prodId">
+                                <button class="btn" type="submit"> x </button>
+                            </form>
+                        </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <h2>you haven't bought anything yet</h2>
+        <% } %>
     </main>
-</body>
+    <%- include('../shared/butt.ejs') %>

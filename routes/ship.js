@@ -11,6 +11,8 @@ router.get('/', shopControl.getShopBase)
 router.get('/go-kart', shopControl.getShopKart)
 router.post('/go-kart', shopControl.postShopKart)
 
+router.post('/cart-delete-item', shopControl.postCartDeleteItem)
+
 router.get('/orders', shopControl.getOrders)
 
 router.get('/all-prods', shopControl.getShopProds)
