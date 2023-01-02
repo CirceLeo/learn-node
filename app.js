@@ -1,8 +1,9 @@
 const http = require('http')  
 const express = require('express')
+
 const parser = require('body-parser')
 const errorCon = require('./controllers/other')
-// const {parse} = require('path')
+// const db = require('./util/database')
 
 const path = require('path')
 const routes = require('./routes')
@@ -13,10 +14,10 @@ app.engine('ejs', require('ejs').__express)
 
 app.set('view engine', 'ejs')
 
-// app.set('views', 'views')
-
 const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
+const req = require('express/lib/request')
+const { deleteById } = require('./models/product')
 
 app.use(parser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))

@@ -15,6 +15,10 @@ exports.postAddProd = (req, res, next) => {
     const desc = req.body.desc
     const localProd = new Product(null, title, imgUrl, desc, price)
     localProd.save()
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(err => console.log(err))
     res.redirect('/admin/prods')
 }
 
@@ -52,12 +56,15 @@ exports.postEditProd = (req, res, next) => {
 
 
 exports.getAdminProds = (req, res, next) => {
-    Product.fetchAll((prods) => {
+    Product.fetchAll()
+    .then(([rows]) => {
         res.render('admin/admin-prods', {
-            prods: prods, 
+            prods: rows, 
             pageTitle: 'here are all the products for admins', 
-            path: '/admin/prods'})
-        })        
+            path: '/admin/prods'
+        })
+    })
+    .catch(err => console.log('error in prod controller get admin prods catch', err))    
 }
 
 exports.postDelete = (req, res, next) => {

@@ -1,23 +1,5 @@
-const fs = require('fs')
-const path = require('path')
-
 const Cart = require('./cart')
-
-const p = path.join(
-    path.dirname(process.mainModule.filename), 
-    'data', 
-    'products.json'
-)
-const getProdFromFile = (callBack) => {
-    fs.readFile(p, (err, content) => {
-        if(err){
-            return callBack([])
-        }
-        callBack(JSON.parse(content))
-    })
-}
-
-module.exports = path.dirname(process.mainModule.filename)
+const db = require('../util/database')
 
 const prods = []
 
@@ -31,6 +13,48 @@ module.exports = class Product {
     }
 
     save(){
+        db.execute(
+            'INSERT INTO products (title, price, imgUrl, desc) VALUES (?,?,?,?)',
+            [this.title, this.price, this.imgUrl, this.desc]
+            )
+    }
+
+    static deleteById(id){
+    }
+
+    static fetchAll(){
+        return db.execute('SELECT * FROM products');
+    }
+
+    static findById(id, callback){
+
+    }
+}
+
+
+
+/** VESTIGAL
+ * module.exports = path.dirname(process.mainModule.filename)
+
+ * const fs = require('fs')
+const path = require('path')
+
+
+const p = path.join(
+        path.dirname(process.mainModule.filename), 
+        'data', 
+        'products.json'
+    )
+    const getProdFromFile = (callBack) => {
+            fs.readFile(p, (err, content) => {
+                    if(err){
+                            return callBack([])
+                        }
+                        callBack(JSON.parse(content))
+                    })
+                }    
+
+                    save(){
         getProdFromFile(products => {
             if(this.id !== null){
                 const oldProdInd =  products.findIndex(prod => prod.id === this.id)
@@ -49,6 +73,7 @@ module.exports = class Product {
         })
     }
 
+    
     static deleteById(id){
         getProdFromFile(prods => {
             const toBeDeleted = prods.find( prod => prod.id === id)
@@ -69,4 +94,5 @@ module.exports = class Product {
             callback(product)
         })
     }
-}
+ * 
+ */

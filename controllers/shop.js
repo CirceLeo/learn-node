@@ -5,13 +5,15 @@ const Cart = require('../models/cart')
 
 
 exports.getShopBase = (req, res, next) => {
-    Product.fetchAll((prods) => {
+    Product.fetchAll()
+    .then(([rows, info]) => {
         res.render('shop/start', {
-            prods: prods, 
+            prods: rows, 
             pageTitle: 'Howdy folks', 
             path: '/', 
         })
     })
+    .catch(err => console.log('error in shop controller get shop base catch', err))
 }
 
 exports.getShopKart = (req, res, next) => {
@@ -57,13 +59,15 @@ exports.getOrders = (req, res, next) => {
 
 
 exports.getShopProds = (req, res, next) => {
-    Product.fetchAll((prods) => {
+    Product.fetchAll()
+    .then(([rows, info]) => {
         res.render('shop/prod-list', {
             prods: prods, 
             pageTitle: 'shop all', 
             path: '/all-prods', 
         })
     })
+    .catch(err => console.log('error in shop controller get all prods catch', err))
 }
 
 exports.getProdDetail= (req, res, next) => {
