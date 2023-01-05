@@ -5,10 +5,9 @@ const Cart = require('../models/cart')
 
 
 exports.getShopBase = (req, res, next) => {
-    Product.fetchAll()
-    .then(([rows, info]) => {
+    Product.findAll().then(prods => {
         res.render('shop/start', {
-            prods: rows, 
+            prods: prods, 
             pageTitle: 'Howdy folks', 
             path: '/', 
         })
@@ -59,8 +58,8 @@ exports.getOrders = (req, res, next) => {
 
 
 exports.getShopProds = (req, res, next) => {
-    Product.fetchAll()
-    .then(([rows, info]) => {
+    Product.findAll()
+    .then(prods => {
         res.render('shop/prod-list', {
             prods: prods, 
             pageTitle: 'shop all', 
@@ -72,11 +71,11 @@ exports.getShopProds = (req, res, next) => {
 
 exports.getProdDetail= (req, res, next) => {
     const prodId = req.params.prodId
-    Product.findById(prodId).then(([product]) => {
+    Product.findById(prodId).then(product => {
         res.render(
             'shop/prod-deets', 
             {
-                prod: product[0], 
+                prod: product, 
                 pageTitle: product.title, 
                 path:'/all-prods'
             })
