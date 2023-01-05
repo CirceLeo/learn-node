@@ -1,12 +1,9 @@
-const http = require('http')  
 const express = require('express')
-
-const parser = require('body-parser')
-const errorCon = require('./controllers/other')
-// const db = require('./util/database')
-
 const path = require('path')
-const routes = require('./routes')
+const parser = require('body-parser')
+
+const errorCon = require('./controllers/other')
+const sequelize = require('./util/database')
 
 const app = express()
 
@@ -16,8 +13,6 @@ app.set('view engine', 'ejs')
 
 const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
-const req = require('express/lib/request')
-const { deleteById } = require('./models/product')
 
 app.use(parser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -26,12 +21,25 @@ app.use(shipRoutes)
 
 app.use(errorCon.getLost)
 
+sequelize.sync()
+    .then(result => {
+        // console.log(result)
+        app.listen(3000)
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
-app.listen(3000)
 
 
 
 //learning vestiges: 
+// const req = require('express/lib/request')
+// const db = require('./util/database')
+// const routes = require('./routes')
+// const http = require('http')  
+// const req = require('express/lib/request')
+// const { deleteById } = require('./models/product')
 // app.engine('handlebars', expressHbs())
 // app.set('view engine', 'handlebars')
 // app.engine('pug', require('pug').__express)

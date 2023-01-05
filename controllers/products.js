@@ -13,13 +13,20 @@ exports.postAddProd = (req, res, next) => {
     const imgUrl = req.body.imgUrl
     const price = req.body.price
     const desc = req.body.desc
-    const localProd = new Product(null, title, imgUrl, desc, price)
-    localProd.save()
-        .then(() => {
-            res.redirect('/')
-        })
-        .catch(err => console.log(err))
-    res.redirect('/admin/prods')
+    Product.create({
+        title: title,  
+        price: price,
+        desc: desc,
+        imgUrl: imgUrl
+    }).then(res => console.log('made a prod')).catch(err=>console.log(err))
+
+    // const localProd = new Product(null, title, imgUrl, desc, price)
+    // localProd.save()
+    //     .then(() => {
+    //         res.redirect('/')
+    //     })
+    //     .catch(err => console.log(err))
+    // res.redirect('/admin/prods')
 }
 
 exports.getEditProd = (req, res, next) => {
