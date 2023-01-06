@@ -16,22 +16,28 @@ exports.getShopBase = (req, res, next) => {
 }
 
 exports.getShopKart = (req, res, next) => {
-    Cart.getCart(cart => {
-        Product.fetchAll(products => {
-            const cartProds = []
-            for(product of products){
-                const cartProdData = cart.products.find(prod => prod.id === product.id)
-                if(cartProdData){
-                    cartProds.push({productData: product, qty: cartProdData.qty})
-                }
-            }
+    req.user.getCart().then((cart)=>{
+        return cart.getProducts().then(prods => {
             res.render('shop/cart', {
                 pageTitle: 'Girlie look at the stuff you got', 
                 path: '/go-kart',
-                products: cartProds
+                products: prods
             })
-        })
+        }).catch(err => console.log('shop cont get cart', err))
     })
+    .catch(err => console.log('shop controller get cart', err))
+    // Cart.getCart(cart => {
+    //     Product.fetchAll(products => {
+    //         const cartProds = []
+    //         for(product of products){
+    //             const cartProdData = cart.products.find(prod => prod.id === product.id)
+    //             if(cartProdData){
+    //                 cartProds.push({productData: product, qty: cartProdData.qty})
+    //             }
+    //         }
+            
+    //     })
+    // })
 }
 
 exports.postShopKart = (req, res, next) => {
