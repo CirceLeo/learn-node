@@ -4,6 +4,8 @@ const parser = require('body-parser')
 
 const errorCon = require('./controllers/other')
 const sequelize = require('./util/database')
+const Product = require('./models/product')
+const User = require('./models/user')
 
 const app = express()
 
@@ -13,6 +15,15 @@ app.set('view engine', 'ejs')
 
 const adminData = require('./routes/admin')
 const shipRoutes = require('./routes/ship')
+const { use } = require('express/lib/router')
+const { moveMessagePortToContext } = require('worker_threads')
+
+app.use((req, res, next) => {
+    User.findById(1).then(user => {
+        req.user = user
+        next()
+    }).catch(err => console.log('app,js user middleware', err))
+})
 
 app.use(parser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -21,9 +32,20 @@ app.use(shipRoutes)
 
 app.use(errorCon.getLost)
 
+
+Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'})
+User.hasMany(Product)
+
 sequelize.sync()
     .then(result => {
+        return User.findById(1)
         // console.log(result)
+    }).then(user => {
+        if(!user){
+            return User.create({name:'margot', email:"margot@margot.org" })
+        }
+        return Promise.resolve(user)
+    }).then(user => {
         app.listen(3000)
     })
     .catch(err => {
